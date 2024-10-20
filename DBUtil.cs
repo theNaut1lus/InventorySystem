@@ -25,8 +25,10 @@ namespace InventorySystem
                 Con.Close();
 
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
+                Con.Close();
 
             }
         }
@@ -36,15 +38,17 @@ namespace InventorySystem
             try
             {
                 Con.Open();
+                Console.WriteLine("insert into " + tbl + " values(" + tblColumns + ")");
                 SqlCommand cmd = new SqlCommand("insert into " + tbl + " values(" + tblColumns + ")", Con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show(msg);
                 Con.Close();
 
             }
-            catch
+            catch(Exception e)
             {
-
+                Console.WriteLine(e);
+                Con.Close();
 
             }
         }
@@ -54,27 +58,68 @@ namespace InventorySystem
             try
             {
                 Con.Open();
+                Console.WriteLine("update " + tbl + " set " + tblColumns);
                 SqlCommand cmd = new SqlCommand("update " + tbl + " set " + tblColumns, Con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show(msg);
                 Con.Close();
 
             }
-            catch
+            catch(Exception e)
             {
-
-
+                Console.WriteLine(e);
+                Con.Close();
             }
         }
 
         public void deleteDB(SqlConnection Con, string tbl, string tblColumns, string msg)
         {
-            Con.Open();
-            string Myquary = "delete from "+ tbl +" where "+ tblColumns;
-            SqlCommand cmd = new SqlCommand(Myquary, Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show(msg);
-            Con.Close();
+            try
+            {
+                Con.Open();
+                string Myquary = "delete from " + tbl + " where " + tblColumns;
+                Console.WriteLine(Myquary);
+                SqlCommand cmd = new SqlCommand(Myquary, Con);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show(msg);
+                Con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Con.Close();
+            }
+        }
+
+        public bool countDB(SqlConnection Con, string tbl, string tblColumns, string msg)
+        {
+            try
+            {
+                Con.Open();
+                string Myquary = "select count(*) from " + tbl + " where " + tblColumns;
+                SqlDataAdapter sda = new SqlDataAdapter(Myquary, Con);
+                DataTable dt = new DataTable();
+                Console.WriteLine(Myquary);
+                sda.Fill(dt);
+                if (dt.Rows[0][0].ToString() == "1")
+                {
+                    MessageBox.Show(msg);
+                    Con.Close();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Login Failed");
+                    Con.Close();
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Con.Close();
+                return false;
+            }
         }
     }
 }

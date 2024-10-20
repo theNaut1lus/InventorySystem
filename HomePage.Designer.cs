@@ -30,8 +30,9 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
-            listBox1 = new ListBox();
             button1 = new Button();
+            listBox1 = new ListBox();
+            btnOpen = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnOpen);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(listBox1);
             groupBox1.Font = new Font("Segoe UI", 12F);
@@ -59,6 +61,18 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Menu";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.MistyRose;
+            button1.ForeColor = Color.IndianRed;
+            button1.Location = new Point(51, 260);
+            button1.Name = "button1";
+            button1.Size = new Size(81, 43);
+            button1.TabIndex = 3;
+            button1.Text = "LOGOUT";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // listBox1
             // 
@@ -72,17 +86,19 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(179, 193);
             listBox1.TabIndex = 0;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // button1
+            // btnOpen
             // 
-            button1.BackColor = Color.MistyRose;
-            button1.ForeColor = Color.IndianRed;
-            button1.Location = new Point(93, 260);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 43);
-            button1.TabIndex = 3;
-            button1.Text = "LOGOUT";
-            button1.UseVisualStyleBackColor = false;
+            btnOpen.BackColor = Color.MistyRose;
+            btnOpen.ForeColor = Color.LimeGreen;
+            btnOpen.Location = new Point(148, 260);
+            btnOpen.Name = "btnOpen";
+            btnOpen.Size = new Size(82, 43);
+            btnOpen.TabIndex = 4;
+            btnOpen.Text = "OPEN";
+            btnOpen.UseVisualStyleBackColor = false;
+            btnOpen.Click += btnOpen_Click;
             // 
             // HomePage
             // 
@@ -104,5 +120,6 @@
         private GroupBox groupBox1;
         private ListBox listBox1;
         private Button button1;
+        private Button btnOpen;
     }
 }

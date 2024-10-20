@@ -30,10 +30,10 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
-            button1 = new Button();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            button2 = new Button();
+            btnClear = new Button();
+            btnLogin = new Button();
+            txtPassword = new TextBox();
+            txtUsername = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,10 +51,10 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(btnClear);
+            groupBox1.Controls.Add(btnLogin);
+            groupBox1.Controls.Add(txtPassword);
+            groupBox1.Controls.Add(txtUsername);
             groupBox1.Font = new Font("Segoe UI", 12F);
             groupBox1.ForeColor = SystemColors.ControlDarkDark;
             groupBox1.Location = new Point(49, 49);
@@ -64,44 +64,46 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Login";
             // 
-            // button1
+            // btnClear
             // 
-            button1.BackColor = Color.MistyRose;
-            button1.ForeColor = Color.IndianRed;
-            button1.Location = new Point(98, 161);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 43);
-            button1.TabIndex = 2;
-            button1.Text = "LOGIN";
-            button1.UseVisualStyleBackColor = false;
+            btnClear.BackColor = Color.MistyRose;
+            btnClear.ForeColor = Color.LimeGreen;
+            btnClear.Location = new Point(108, 265);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(72, 29);
+            btnClear.TabIndex = 3;
+            btnClear.Text = "CLEAR";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
-            // textBox2
+            // btnLogin
             // 
-            textBox2.Location = new Point(6, 112);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.PlaceholderText = "Password";
-            textBox2.Size = new Size(271, 29);
-            textBox2.TabIndex = 1;
+            btnLogin.BackColor = Color.MistyRose;
+            btnLogin.ForeColor = Color.IndianRed;
+            btnLogin.Location = new Point(98, 161);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(92, 43);
+            btnLogin.TabIndex = 2;
+            btnLogin.Text = "LOGIN";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
-            // textBox1
+            // txtPassword
             // 
-            textBox1.Location = new Point(6, 49);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Username";
-            textBox1.Size = new Size(271, 29);
-            textBox1.TabIndex = 0;
+            txtPassword.Location = new Point(6, 112);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.PlaceholderText = "Password";
+            txtPassword.Size = new Size(271, 29);
+            txtPassword.TabIndex = 1;
             // 
-            // button2
+            // txtUsername
             // 
-            button2.BackColor = Color.MistyRose;
-            button2.ForeColor = Color.LimeGreen;
-            button2.Location = new Point(108, 265);
-            button2.Name = "button2";
-            button2.Size = new Size(72, 29);
-            button2.TabIndex = 3;
-            button2.Text = "CLEAR";
-            button2.UseVisualStyleBackColor = false;
+            txtUsername.Location = new Point(6, 49);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Username";
+            txtUsername.Size = new Size(271, 29);
+            txtUsername.TabIndex = 0;
             // 
             // Login
             // 
@@ -122,9 +124,9 @@
 
         private Label label1;
         private GroupBox groupBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
-        private Button button2;
+        private TextBox txtUsername;
+        private TextBox txtPassword;
+        private Button btnLogin;
+        private Button btnClear;
     }
 }

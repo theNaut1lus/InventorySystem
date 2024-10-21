@@ -11,27 +11,29 @@ namespace InventorySystem
 {
     internal class DBUtil : IDBUtil
     {
-        public void popularate(SqlConnection Con, DataGridView dgv, String table)
-        {
-            try
+        public int popularate(SqlConnection Con, DataGridView dgv, String table)
             {
-                Con.Open();
-                string Myqurey = "select * from " + table;
-                SqlDataAdapter da = new SqlDataAdapter(Myqurey, Con);
-                SqlCommandBuilder builder = new SqlCommandBuilder(da);
-                var ds = new DataSet();
-                da.Fill(ds);
-                dgv.DataSource = ds.Tables[0];
+                int rowCount = 0;
+                try
+                {
+                    Con.Open();
+                    string Myqurey = "select * from " + table;
+                    SqlDataAdapter da = new SqlDataAdapter(Myqurey, Con);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(da);
+                    var ds = new DataSet();
+                    da.Fill(ds);
+                    dgv.DataSource = ds.Tables[0];
+                    rowCount = ds.Tables[0].Rows.Count;
+                    
+            
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
                 Con.Close();
-
+                return rowCount;
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-                Con.Close();
-
-            }
-        }
 
         public void insertDB(SqlConnection Con, string tbl, string tblColumns, string msg)
         {

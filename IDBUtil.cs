@@ -9,7 +9,7 @@ namespace InventorySystem
 {
     internal interface IDBUtil
     {
-        public void popularate(SqlConnection Con, DataGridView dgv, String table);
+        public int popularate(SqlConnection Con, DataGridView dgv, String table);
         public void insertDB(SqlConnection Con, string tbl, string tblColumns, string msg);
         public void updateDB(SqlConnection Con, string tbl, string tblColumns, string msg);
         public void deleteDB(SqlConnection Con, string tbl, string tblColumns, string msg);

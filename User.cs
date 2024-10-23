@@ -79,6 +79,12 @@ namespace InventorySystem
 
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
+            txtUsername.Text = "";
+            txtFullName.Text = "";
+            txtPassword.Text = "";
+            txtNumber.Text = "";
+
+            rtxtSearch.Text = "";
             popularate();
         }
 
@@ -87,6 +93,30 @@ namespace InventorySystem
             HomePage homePage = new HomePage();
             homePage.Show();
             this.Hide();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (rtxtSearch.Text == "")
+            {
+                popularate();
+            }
+            else             
+            {
+                dBUtil.searchDB(dgvUser, rtxtSearch.Text);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (rtxtSearch.Text == "")
+            {
+                popularate();
+            }
+            else
+            {
+                dBUtil.searchDB(dgvUser, rtxtSearch.Text);
+            }
         }
     }
 }

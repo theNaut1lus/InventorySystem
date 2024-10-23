@@ -17,8 +17,8 @@ namespace InventorySystem
                 try
                 {
                     Con.Open();
-                    string Myqurey = "select * from " + table;
-                    SqlDataAdapter da = new SqlDataAdapter(Myqurey, Con);
+                    string Myquery = "select * from " + table;
+                    SqlDataAdapter da = new SqlDataAdapter(Myquery, Con);
                     SqlCommandBuilder builder = new SqlCommandBuilder(da);
                     var ds = new DataSet();
                     da.Fill(ds);
@@ -121,6 +121,27 @@ namespace InventorySystem
                 Console.WriteLine(e);
                 Con.Close();
                 return false;
+            }
+        }
+
+        public void searchDB(DataGridView dgv, string searchString)
+        {
+            if(dgv != null && dgv.Rows.Count > 0)
+            {
+                DataTable dataTable = (DataTable)dgv.DataSource;
+                //var result = from row in dataTable.AsEnumerable()
+                //             where row.Field<string>("Uname").Contains(searchString)
+                //             select row;
+                //convert above LINQ to lambda expressions
+                var result = dataTable.AsEnumerable().Where(row => row.Field<string>("Uname").Contains(searchString));
+                try
+                {
+                    dgv.DataSource = result.CopyToDataTable();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
     }

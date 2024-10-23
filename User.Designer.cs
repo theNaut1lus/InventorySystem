@@ -30,9 +30,9 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
+            rtxtSearch = new RichTextBox();
             btnClearSearch = new Button();
             btnSearch = new Button();
-            cboCategory = new ComboBox();
             label2 = new Label();
             button4 = new Button();
             dgvUser = new DataGridView();
@@ -61,9 +61,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rtxtSearch);
             groupBox1.Controls.Add(btnClearSearch);
             groupBox1.Controls.Add(btnSearch);
-            groupBox1.Controls.Add(cboCategory);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(button4);
             groupBox1.Controls.Add(dgvUser);
@@ -82,6 +82,15 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Users";
+            // 
+            // rtxtSearch
+            // 
+            rtxtSearch.Location = new Point(6, 25);
+            rtxtSearch.Name = "rtxtSearch";
+            rtxtSearch.Size = new Size(128, 31);
+            rtxtSearch.TabIndex = 13;
+            rtxtSearch.Text = "";
+            rtxtSearch.TextChanged += richTextBox1_TextChanged;
             // 
             // btnClearSearch
             // 
@@ -107,15 +116,6 @@
             btnSearch.TabIndex = 11;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
-            // 
-            // cboCategory
-            // 
-            cboCategory.FormattingEnabled = true;
-            cboCategory.Location = new Point(6, 24);
-            cboCategory.Margin = new Padding(1);
-            cboCategory.Name = "cboCategory";
-            cboCategory.Size = new Size(130, 31);
-            cboCategory.TabIndex = 10;
             // 
             // label2
             // 
@@ -254,8 +254,8 @@
         private Button button4;
         private DataGridView dgvUser;
         private Label label2;
-        private ComboBox cboCategory;
         private Button btnClearSearch;
         private Button btnSearch;
+        private RichTextBox rtxtSearch;
     }
 }

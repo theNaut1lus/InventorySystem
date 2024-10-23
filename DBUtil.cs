@@ -129,11 +129,9 @@ namespace InventorySystem
             if(dgv != null && dgv.Rows.Count > 0)
             {
                 DataTable dataTable = (DataTable)dgv.DataSource;
-                //var result = from row in dataTable.AsEnumerable()
-                //             where row.Field<string>("Uname").Contains(searchString)
-                //             select row;
-                //convert above LINQ to lambda expressions
-                var result = dataTable.AsEnumerable().Where(row => row.Field<string>("Uname").Contains(searchString));
+                //search across all columns
+                var result = dataTable.AsEnumerable().Where(row => row.ItemArray.Any(field => field.ToString().Contains(searchString)));
+                //var result = dataTable.AsEnumerable().Where(row => row.Field<string>(1).Contains(searchString));
                 try
                 {
                     dgv.DataSource = result.CopyToDataTable();

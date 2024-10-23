@@ -49,6 +49,7 @@
             label4 = new Label();
             txtQty = new TextBox();
             btnHome = new Button();
+            lblErrormsg = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             SuspendLayout();
             // 
@@ -134,7 +135,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(12, 968);
+            btnAdd.Location = new Point(12, 1089);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(225, 69);
             btnAdd.TabIndex = 9;
@@ -144,7 +145,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(301, 968);
+            btnEdit.Location = new Point(301, 1089);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(225, 69);
             btnEdit.TabIndex = 10;
@@ -154,7 +155,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(583, 968);
+            btnDelete.Location = new Point(583, 1089);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(225, 69);
             btnDelete.TabIndex = 11;
@@ -237,11 +238,21 @@
             btnHome.UseVisualStyleBackColor = true;
             btnHome.Click += btnHome_Click;
             // 
+            // lblErrormsg
+            // 
+            lblErrormsg.AutoSize = true;
+            lblErrormsg.ForeColor = Color.IndianRed;
+            lblErrormsg.Location = new Point(20, 981);
+            lblErrormsg.Name = "lblErrormsg";
+            lblErrormsg.Size = new Size(0, 48);
+            lblErrormsg.TabIndex = 21;
+            // 
             // Product
             // 
             AutoScaleDimensions = new SizeF(20F, 48F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1374, 1085);
+            ClientSize = new Size(1374, 1211);
+            Controls.Add(lblErrormsg);
             Controls.Add(btnHome);
             Controls.Add(txtQty);
             Controls.Add(label4);
@@ -294,5 +305,6 @@
         private Label label4;
         private TextBox txtQty;
         private Button btnHome;
+        private Label lblErrormsg;
     }
 }

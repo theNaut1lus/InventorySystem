@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InventorySystem
 {
@@ -113,19 +115,59 @@ namespace InventorySystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            dBUtil.insertDB(Con, "ProductTbl", "'" +
+            int i = 0;
+            if (int.TryParse(txtQty.Text, out i))
+            {
+
+                if(int.TryParse(txtPrice.Text, out i))
+                {
+                    dBUtil.insertDB(Con, "ProductTbl", "'" +
                     txtProductID.Text + "','" + txtProductName.Text + "','" + txtQty.Text +
                     "','" + txtPrice.Text + "','" + txtDesc.Text + "','"
                     + cboCat.SelectedValue.ToString() + "'", "Product Successfully Added");
+
+                    lblErrormsg.Text = "";
+                }
+                else
+                {
+                    lblErrormsg.Text = "Price should be numeric";
+                }
+                
+                    
+            }
+            else
+            {
+                lblErrormsg.Text = "Quantity should be numeric";
+            }
+
+             
             popularate();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            dBUtil.updateDB(Con, "ProductTbl", "ProdName = '" +
+            int i = 0;
+            if (int.TryParse(txtQty.Text, out i))
+            {
+                if (int.TryParse(txtPrice.Text, out i))
+                {
+                    dBUtil.updateDB(Con, "ProductTbl", "ProdName = '" +
                     txtProductName.Text + "',ProdQty='" + txtQty.Text + "',ProdPrice='" +
                     txtPrice.Text + "',ProdDisc='" + txtDesc.Text + "',ProdCat='" +
                     cboCat.SelectedValue.ToString() + "' where ProdId='" + txtProductID.Text + "'", "Product Successfully Updated");
+                    lblErrormsg.Text = "";
+                }
+                else
+                {
+                    lblErrormsg.Text = "Price should be numeric";
+                }
+                    
+            }
+            else
+            {
+                lblErrormsg.Text = "Quantity should be numeric";
+            }
+            
             popularate();
         }
 

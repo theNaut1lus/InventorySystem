@@ -80,6 +80,7 @@ StyleCopReport.xml
 *.pch
 *.pdb
 *.ipdb
+*.log
 *.pgc
 *.pgd
 *.rsp
@@ -90,7 +91,6 @@ StyleCopReport.xml
 *.tmp
 *.tmp_proj
 *_wpftmp.csproj
-*.log
 *.vspscc
 *.vssscc
 .builds
@@ -260,11 +260,6 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
-
-# SQL Server files
-*.mdf
-*.ldf
-*.ndf
 
 # Business Intelligence projects
 *.rdl.data

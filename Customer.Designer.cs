@@ -41,6 +41,7 @@
             tbSearch = new TextBox();
             btnSearchClear = new Button();
             btnSearch = new Button();
+            btnHome = new Button();
             ((System.ComponentModel.ISupportInitialize)gridCustomer).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -55,7 +56,7 @@
             gridCustomer.Location = new Point(181, 0);
             gridCustomer.Name = "gridCustomer";
             gridCustomer.ReadOnly = true;
-            gridCustomer.Size = new Size(467, 309);
+            gridCustomer.Size = new Size(467, 356);
             gridCustomer.TabIndex = 0;
             gridCustomer.CellClick += SelectCustomer;
             // 
@@ -99,7 +100,6 @@
             tbCusID.PlaceholderText = "1001";
             tbCusID.Size = new Size(149, 23);
             tbCusID.TabIndex = 8;
-            tbCusID.TextChanged += SetCustomer;
             // 
             // label3
             // 
@@ -126,7 +126,7 @@
             btnUpsert.Name = "btnUpsert";
             btnUpsert.Size = new Size(149, 23);
             btnUpsert.TabIndex = 4;
-            btnUpsert.Text = "Insert";
+            btnUpsert.Text = "Insert / Update";
             btnUpsert.UseVisualStyleBackColor = true;
             btnUpsert.Click += UpsertCustomer;
             // 
@@ -155,6 +155,7 @@
             tbSearch.PlaceholderText = "Search...";
             tbSearch.Size = new Size(123, 23);
             tbSearch.TabIndex = 4;
+            tbSearch.KeyUp += OnSearchTextboxKeyUp;
             // 
             // btnSearchClear
             // 
@@ -176,11 +177,22 @@
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += Search;
             // 
+            // btnHome
+            // 
+            btnHome.Location = new Point(12, 321);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(163, 23);
+            btnHome.TabIndex = 7;
+            btnHome.Text = "Home";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += ReturnHome;
+            // 
             // Customer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(648, 309);
+            ClientSize = new Size(648, 356);
+            Controls.Add(btnHome);
             Controls.Add(btnSearch);
             Controls.Add(btnSearchClear);
             Controls.Add(tbSearch);
@@ -212,5 +224,6 @@
         private Button btnSearch;
         private Label label3;
         private TextBox tbCusID;
+        private Button btnHome;
     }
 }

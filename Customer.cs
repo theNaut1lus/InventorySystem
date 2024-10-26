@@ -38,9 +38,10 @@ namespace InventorySystem
             if (tbCusID.Text == "")
             {
                 dBUtil.insertDB(dbCon, "CustomerTbl", $"{tbCusID.Text}, '{tbCusName.Text}', '{tbCusPhone.Text}'", "Customer inserted successfully!");
-            } else
+            }
+            else
             {
-                dBUtil.updateDB(dbCon, "CustomerTbl", $"CusName='{tbCusName.Text}', CusPhone='{tbCusPhone.Text}' where CusID='{tbCusID.Text}'", "Customer updated successfully!");
+                dBUtil.updateDB(dbCon, "CustomerTbl", $"CusName='{tbCusName.Text}', CusPhone='{tbCusPhone.Text}' where CusID={tbCusID.Text}", "Customer updated successfully!");
             }
 
             PopulateData();
@@ -58,7 +59,8 @@ namespace InventorySystem
 
         private void Search(object sender, EventArgs e)
         {
-            dBUtil.searchDB(gridCustomer, tbSearch.Text);
+            if (tbSearch.Text == "") ClearSearch(sender, e);
+            else dBUtil.searchDB(gridCustomer, tbSearch.Text);
         }
 
         private void ClearSearch(object sender, EventArgs e)
@@ -67,17 +69,27 @@ namespace InventorySystem
             PopulateData();
         }
 
-        private void SetCustomer(object sender, EventArgs e)
-        {
-            btnUpsert.Text = tbCusID.Text == "" ? "Insert" : "Update";
-        }
-
         private void ClearCustomer(object sender, EventArgs e)
         {
             tbCusID.Text = "";
             tbCusID.ReadOnly = false;
             tbCusName.Text = "";
             tbCusPhone.Text = "";
+        }
+
+        private void OnSearchTextboxKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search(sender, e);
+            }
+        }
+
+        private void ReturnHome(object sender, EventArgs e)
+        { 
+            HomePage homePage = new HomePage();
+            homePage.Show();
+            this.Hide();
         }
     }
 }

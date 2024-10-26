@@ -45,6 +45,14 @@ namespace InventorySystem
             {
                 selectedItem = "User";
             }
+            else if (listBoxItem == "Orders")
+            {
+                selectedItem = "Order";
+            }
+            else if (listBoxItem == "Customers")
+            {
+                selectedItem = "Customer";
+            }
             //[TODO]: add more else if statements here for additional forms created
 
         }
@@ -74,6 +82,16 @@ namespace InventorySystem
                 case "User":
                     User user = new User();
                     user.Show();
+                    this.Hide();
+                    break;
+                case "Order":
+                    Orders orders = new Orders();
+                    orders.Show();
+                    this.Hide();
+                    break;
+                case "Customer":
+                    Customer customer = new Customer();
+                    customer.Show();
                     this.Hide();
                     break;
                 default:

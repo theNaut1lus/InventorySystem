@@ -13,7 +13,8 @@ namespace InventorySystem
             get
             {
                 //change the connection string to your own local SQL Server connection string
-                return "Data Source=sidney;Initial Catalog=C:\\USERS\\ADMINISTRATOR\\DOCUMENTS\\INVENTORYDB.MDF;Integrated Security=True;Encrypt=False;";
+                var dataDirectory = AppDomain.CurrentDomain.GetData("DataDirectory")?.ToString();
+                return $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={dataDirectory}db\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30";
             }
         }
     }

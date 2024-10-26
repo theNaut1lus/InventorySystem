@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InventorySystem
 {
@@ -139,8 +140,24 @@ namespace InventorySystem
 
         private void btnUpsert_Click(object sender, EventArgs e)
         {
-            var cusName =
-                gridCustomers.SelectedRows != null && gridCustomers.SelectedRows.Count > 0 ? gridCustomers.SelectedRows[0].Cells[1].Value.ToString() : gridCustomers.Rows[0].Cells[1].Value.ToString();
+            List<CustomerData> customers = []; 
+            if (gridCustomers.SelectedRows != null && gridCustomers.SelectedRows.Count > 0)
+            {
+                foreach(DataGridViewRow row in gridCustomers.SelectedRows) 
+                    customers.Add(new CustomerData(row.Cells[0].Value.ToString() ?? "", row.Cells[1].Value.ToString() ?? ""));
+            }
+            else if (gridCustomers.Rows != null && gridCustomers.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in gridCustomers.Rows)
+                    customers.Add(new CustomerData(row.Cells[0].Value.ToString() ?? "", row.Cells[1].Value.ToString() ?? ""));
+            }
+
+            var customer = customers.Find(cus => cus.CustomerID == tbCusID.Text);
+            if (customer == null)
+            {
+                MessageBox.Show("Customer not selected", "Error", MessageBoxButtons.OK);
+                return;
+            }
 
             int price = 0, quantity = 0, total = 0;
             try {
@@ -158,14 +175,26 @@ namespace InventorySystem
 
             if (!tbOrderID.ReadOnly)
             {
-                dBUtil.insertDB(dbCon, "OrdersTbl", $"{tbOrderID.Text}, {tbCusID.Text}, '{cusName}', GETDATE(), {total}, {tbProdID.Text}, {quantity}", "Order inserted successfully!");
+                dBUtil.insertDB(dbCon, "OrdersTbl", $"{tbOrderID.Text}, {tbCusID.Text}, '{customer.CustomerName}', GETDATE(), {total}, {tbProdID.Text}, {quantity}", "Order inserted successfully!");
             }
             else
             {
-                dBUtil.updateDB(dbCon, "OrdersTbl", $"CustId={tbCusID.Text}, CustomerName='{cusName}', orderDate=GETDATE(), totAmount={total}, ProdId={tbProdID.Text}, quantity={quantity} where OrderId={tbOrderID.Text}", "Order updated successfully!");
+                dBUtil.updateDB(dbCon, "OrdersTbl", $"CustId={tbCusID.Text}, CustomerName='{customer.CustomerName}', orderDate=GETDATE(), totAmount={total}, ProdId={tbProdID.Text}, quantity={quantity} where OrderId={tbOrderID.Text}", "Order updated successfully!");
             }
 
             PopulateData();
         }
+    }
+}
+
+public class CustomerData
+{
+    public string CustomerID { get; set; }
+    public string CustomerName { get; set; }
+
+    public CustomerData(string customerID, string customerName)
+    {
+        CustomerID = customerID;
+        CustomerName = customerName;
     }
 }
